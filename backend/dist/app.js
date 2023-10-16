@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const server_1 = require("@apollo/server");
 const express4_1 = require("@apollo/server/express4");
+const prismadb_1 = __importDefault(require("./utils/prismadb"));
 async function init() {
     const app = (0, express_1.default)();
     app.use(express_1.default.json());
@@ -16,11 +17,26 @@ async function init() {
             name:String
             say(name:String):String
         }
+        type Mutation {
+            createUser(name:String!,password:String!,email:String!):Boolean
+        }
         `,
         resolvers: {
             Query: {
                 name: () => `hii`,
                 say: (_, { name }) => `Hey ${name},  How are you?`
+            },
+            Mutation: {
+                createUser: async (_, { name, password, email }) => {
+                    await prismadb_1.default.user.create({
+                        data: {
+                            name: "sahil",
+                            email: "sahil01.com",
+                            password: "khan123"
+                        }
+                    });
+                    return true;
+                }
             }
         }
     });

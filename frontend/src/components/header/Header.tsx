@@ -6,8 +6,8 @@ export default function Navbar() {
     <div style={{
       display: "flex",
       justifyContent: "space-between", width:"full" }} className='p-2'>
-        <div className='hover:cursor-pointer mt-1.5'>
-            <span>Coursera</span>
+        <div className='hover:cursor-pointer mt-1.5 font-bold'>
+            <span>BlogBox</span>
           </div>
         <div>
           

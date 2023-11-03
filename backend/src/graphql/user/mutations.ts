@@ -1,5 +1,6 @@
 
 
 export const mutations = `#graphql
-    createUser(name: String!,password:String, email: String!):User
+    LoginUser(email:String!,password:String!):String
+    createUser(name: String!,password:String, email: String!):String
     `

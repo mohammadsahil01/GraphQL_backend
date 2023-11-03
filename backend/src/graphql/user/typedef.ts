@@ -3,8 +3,8 @@ import { queries } from "./queries";
 
 export const userTypeDefs = `#graphql
     type User {
+        id: ID!
         name: String
-        password:String
         email: String
     }
     

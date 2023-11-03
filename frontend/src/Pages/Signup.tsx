@@ -1,51 +1,60 @@
 import React from "react";
-import { Button } from "../components/ui/button";
+
 import TextField from '@mui/material/TextField';
 import { Card, Typography } from '@mui/material';
-import axios from "axios";
 
-import {useNavigate } from "react-router-dom";
+// import {useNavigate } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { useMutation } from "@apollo/client";
+import { CREATE_USER } from "../graphql/mutations";
 
 function Signup() {
   
-  const [username,setusername] = React.useState("")
+  const [name,setName] = React.useState("")
+  const [email,setEmail] = React.useState("")
   const [password,setpassword] = React.useState("")
-  const Navigate = useNavigate()
+  const [createUser] = useMutation(CREATE_USER)
+  // const Navigate = useNavigate()
 
   return (
-    <div style={{ padding: 100 }}>
+    <div style={{ padding: 50 }}>
       <div style={
         { marginTop: 80,
           display: "flex",
           justifyContent: "center" }}>
-        <Typography variant="h6">Welcome Back, Login below</Typography>
+        <Typography variant="h4">Welcome Back, Login below</Typography>
       </div>
       <div style={
       { display: "flex",
         justifyContent: "center",
-        marginTop: 20 }}>
-        <Card sx={{ minWidth: 275 }} style={{ 
-          width: 400,
+        marginTop: 10 }}>
+        <Card sx={{ minWidth: 250 }} style={{ 
+          width: 350,
           padding: 20 }}>
-          <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" onChange={e=>{
-            setusername(e.target.value)
+          <TextField fullWidth={true} id="filled-basic" label="Email" variant="outlined" onChange={e=>{
+            setEmail(e.target.value)
           }} />
           <br /><br />
-          <TextField fullWidth={true} id="filled-basic" label="Password" variant="filled" onChange={e=>{
+          <TextField fullWidth={true} id="filled-basic" label="Name" variant="outlined" onChange={e=>{
+            setName(e.target.value)
+          }} />
+          <br /><br />
+          <TextField fullWidth={true} id="filled-basic" label="Password" variant="outlined" onChange={e=>{
             setpassword(e.target.value)
           }} />
           <br /><br />
           <Button onClick={
             
             async () => {
-              const response = await axios.post("http://localhost:3000/admin/login", { username: username, password: password });
+              try{
+              const response = await createUser({
+                variables: { name, password,email},
+              })
               let data = response.data;
               console.log(data);
-
-              localStorage.setItem("token", data.token);
-              Navigate('/courses');
-              
-    
+            }catch(error){
+              console.error("Error:",error)
+            }
           }}>Signup</Button>
 
         </Card>

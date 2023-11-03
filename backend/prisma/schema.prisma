@@ -14,6 +14,7 @@ model User {
   name     String
   password String
   email    String   @unique
+  salt     String
   blogs    Blog[]
   comments Comment[]
 }
@@ -22,6 +23,7 @@ model Blog {
   id        String      @id @default(cuid())
   title     String
   content   String
+  ImageUrl  String
   date      DateTime @default(now())
   userId    String
   user      User     @relation(fields: [userId], references: [id])

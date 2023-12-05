@@ -1,9 +1,11 @@
 
 import { commentService,commentPayLoad } from "../../services/comment";
-import prismadb from "../../utils/prismadb"
 
 const queries = {
-    listComments:async(blogId:string)=>{
+    listComments:async(_:any,blogId:string,context:any)=>{
+        if(!context.user){
+            throw new Error("unthorized")
+        }
         let comments = await commentService.listComments(blogId);
         return comments;
     },
@@ -11,7 +13,10 @@ const queries = {
 }
 
 const mutations = {
-    createComment:async(_:any,payLoad:commentPayLoad)=>{
+    createComment:async(_:any,payLoad:commentPayLoad,context:any)=>{
+        if(!context.user){
+            throw new Error("unthorized")
+        }
         const res = await commentService.createComment(payLoad)
         return res.id;
     }

@@ -21,7 +21,7 @@ async function init() {
            const user = UserService.decodeJWT(token as string)
             return {user}
          } catch (error) {
-            return {}
+            return {error}
          }
         
         

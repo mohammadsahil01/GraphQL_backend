@@ -27,10 +27,13 @@ async function CreateApolloServer() {
                 ...Blog.resolvers.mutations,
                 ...Comment.resolvers.mutations
             }
-        }
+        },
+        
     });
+    
     await gqlServer.start();
 
+    
     return gqlServer;
 
 }

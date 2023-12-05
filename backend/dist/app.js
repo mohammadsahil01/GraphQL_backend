@@ -24,7 +24,7 @@ async function init() {
                 return { user };
             }
             catch (error) {
-                return {};
+                return { error };
             }
         }
     }));

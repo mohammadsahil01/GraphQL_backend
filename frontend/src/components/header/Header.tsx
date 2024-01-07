@@ -1,7 +1,9 @@
 
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../ui/button';
 
 export default function Navbar() {
+  const navigate = useNavigate()
   return (
     <div style={{
       display: "flex",
@@ -13,12 +15,14 @@ export default function Navbar() {
           
             <Button 
             className='bg-white text-black rounded-3xl hover:bg-white hover:border border-slate-300 '
-            style={{ marginRight: 10 }} onClick={()=>{}}  >
+            onClick={()=>{navigate("/login")
+              }}
+            style={{ marginRight: 10 }}  >
               Login
             </Button>
             <Button 
             className='rounded-3xl'
-            onClick={()=>{
+            onClick={()=>{navigate("/signup")
               }}>
              Signup</Button>
   

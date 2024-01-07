@@ -1,4 +1,4 @@
 # GraphQL Backend
 
-![arc_Img](backendArc2.png)
+![arc_Img](backendArc.png)
 

@@ -8,7 +8,7 @@ This repository houses the backend implementation of a GraphQL server built usin
 
 ## Features
 
-- **GraphQL Endpoint:** The server exposes a GraphQL API endpoint to handle various data operations.
+- **GraphQL Endpoint:** The server exposes a GraphQL API endpoint to handle various data operations.Apollo server library is used. 
 
 - **TypeScript:** The codebase is entirely written in TypeScript, offering static typing for improved code quality and developer experience.
 
